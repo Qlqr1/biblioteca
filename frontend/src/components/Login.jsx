@@ -3,24 +3,29 @@ import axios from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState(''); // email ou nome
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!identifier || !password) {
+      alert('Preencha o campo de usuário/email e a senha.');
+      return;
+    }
     try {
-      // Faz a requisição POST para a API de login
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-
-      // Armazena o token recebido no armazenamento local do navegador
+      // Envia o valor como email e nome para o backend
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email: identifier,
+        nome: identifier,
+        password
+      });
       localStorage.setItem('token', response.data.token);
-
       alert('Login realizado com sucesso!');
-      navigate('/dashboard'); // Redireciona para a página protegida
+      navigate('/dashboard');
     } catch (error) {
-        console.error('Erro de login:', error); // Agora a variável 'error' está sendo usada
-        alert('Credenciais inválidas. Tente novamente.');
+      console.error('Erro de login:', error);
+      alert('Credenciais inválidas. Tente novamente.');
     }
   };
 
@@ -28,20 +33,20 @@ function Login() {
     <div style={{ padding: '20px' }}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input 
-          type="email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          placeholder="Email" 
-          required 
+        <input
+          type="text"
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
+          placeholder="Email ou nome de usuário"
+          required
         />
         <br /><br />
-        <input 
-          type="password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          placeholder="Senha" 
-          required 
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Senha"
+          required
         />
         <br /><br />
         <button type="submit">Entrar</button>

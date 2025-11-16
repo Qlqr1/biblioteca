@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import Login from './components/Login';
 import Register from './components/Register.jsx'; // <--- NOVIDADE 1: Importar o componente
 import Dashboard from './components/Dashboard';
+import Inicio from './components/Inicio.jsx';
 
 // Componente que atua como um 'guarda de rota'
   const ProtectedRoute = ({ children }) => {
@@ -21,11 +22,11 @@ function App() {
         <Link to="/">Home</Link> |
         <Link to="/login">Login</Link> |
         <Link to="/register">Registro</Link> | {/* <--- NOVIDADE 2: Link para a rota */}
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard">Perfil</Link>
       </nav>
       <Routes>
         {/* Rotas Públicas */}
-        <Route path="/" element={<h2>Página Inicial</h2>} />
+        <Route path="/" element={<Inicio />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} /> {/* <--- NOVIDADE 3: Mapeamento da rota */}
 

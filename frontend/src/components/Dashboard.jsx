@@ -3,8 +3,26 @@ import axios from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
+  const [titulo, setTitulo] = useState('');
+  const [texto, setTexto] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // 1. Envia os dados para a rota de registro do backend
+      await api.post('/auth/livro', { titulo, texto });
+      
+      // 2. Notifica o usuário e redireciona para o login
+      alert('Livro postado com sucesso!');
+        
+    } catch (error) {
+      // 3. Trata erros, como 'Email já cadastrado'
+      const message = error.response?.data?.message || 'Erro ao postar. Tente novamente.';
+      alert(message);
+    }
+  };
 
   useEffect(() => {
     // Esta função tenta acessar a rota protegida do backend
@@ -30,11 +48,35 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Dashboard</h2>
-      <p>{message}</p>
-      <button onClick={handleLogout}>Sair</button>
-    </div>
+    <>
+      <div style={{ padding: '20px' }}>
+          <h2>Perfil</h2>
+          <p>{message}</p>
+          <button onClick={handleLogout}>Sair</button>
+      </div>
+      <div>
+          <h3>Postar livro</h3>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type="text"
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
+              placeholder="Título do Livro" 
+              required 
+            />
+            <br /><br />
+            <input 
+              type="text"
+              value={texto}
+              onChange={(e) => setTexto(e.target.value)}
+              placeholder="Texto do livro" 
+              required 
+            />
+            <br /><br />
+            <button type="submit">Adicionar Livro</button>
+          </form>
+      </div>
+    </>
   );
 }
 

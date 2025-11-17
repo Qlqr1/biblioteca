@@ -12,6 +12,6 @@ CREATE TABLE livros (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL UNIQUE,
     conteudo TEXT NOT NULL,
-    autor_id VARCHAR(255) NOT NULL,
+    autor_id INT NOT NULL,
     FOREIGN KEY (autor_id) REFERENCES users(id)
 );

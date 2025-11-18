@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -12,7 +11,7 @@ function Register() {
         e.preventDefault();
         try {
             // 1. Envia os dados para a rota de registro do backend
-            await api.post('/auth/register', { email, username, password });
+            await api.post('/auth/register', { email, password });
             
             // 2. Notifica o usuário e redireciona para o login
             alert('Usuário registrado com sucesso! Faça o login.');
@@ -34,14 +33,6 @@ function Register() {
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                     placeholder="Email" 
-                    required 
-                />
-                <br /><br />
-                <input 
-                    type="text" 
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)} 
-                    placeholder="Nome de Usuário" 
                     required 
                 />
                 <br /><br />

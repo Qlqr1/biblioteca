@@ -3,21 +3,19 @@ import axios from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [identifier, setIdentifier] = useState(''); // email ou nome
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!identifier || !password) {
-      alert('Preencha o campo de usuário/email e a senha.');
+    if (!email || !password) {
+      alert('Preencha o email e a senha.');
       return;
     }
     try {
-      // Envia o valor como email e nome para o backend
       const response = await axios.post('http://localhost:5000/api/auth/login', {
-        email: identifier,
-        nome: identifier,
+        email,
         password
       });
       localStorage.setItem('token', response.data.token);
@@ -34,10 +32,10 @@ function Login() {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          value={identifier}
-          onChange={(e) => setIdentifier(e.target.value)}
-          placeholder="Email ou nome de usuário"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
           required
         />
         <br /><br />

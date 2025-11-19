@@ -12,8 +12,7 @@ function Dashboard() {
     e.preventDefault();
     try {
       // 1. Envia os dados para a rota de registro do backend
-      await api.post('/auth/livro', { titulo, texto });
-      
+      await api.post('/auth/texto', { titulo, texto });
       // 2. Notifica o usuário e redireciona para o login
       alert('Livro postado com sucesso!');
         

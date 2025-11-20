@@ -18,6 +18,7 @@ function Register() {
             navigate('/login');
             
         } catch (error) {
+            console.error('Erro ao registrar usuário:', error);
             // 3. Trata erros, como 'Email já cadastrado'
             const message = error.response?.data?.message || 'Erro ao registrar. Tente novamente.';
             alert(message);

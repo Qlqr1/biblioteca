@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Register from './components/Register.jsx'; // <--- NOVIDADE 1: Importar o componente
 import Dashboard from './components/Dashboard';
 import Inicio from './components/Inicio.jsx';
+import Livro from './components/Livro.jsx';
 
 // Componente que atua como um 'guarda de rota'
   const ProtectedRoute = ({ children }) => {
@@ -28,8 +29,8 @@ function App() {
         {/* Rotas Públicas */}
         <Route path="/" element={<Inicio />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} /> {/* <--- NOVIDADE 3: Mapeamento da rota */}
-
+        <Route path="/register" element={<Register />} />
+        <Route path="/livro/:id" element={<Livro />} />
         {/* Rota Protegida */}
         <Route
           path="/dashboard"

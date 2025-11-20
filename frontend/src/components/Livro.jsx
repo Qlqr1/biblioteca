@@ -11,7 +11,7 @@ function Livro() {
   useEffect(() => {
     async function fetchLivro() {
       try {
-        const response = await axios.get(`/livros/${id}`);
+        const response = await axios.get(`/auth/livros/${id}`);
         setLivro(response.data);
       } catch (err) {
         setError('Livro não encontrado ou erro ao carregar.');
@@ -29,7 +29,7 @@ function Livro() {
   return (
     <div style={{ maxWidth: 700, margin: '40px auto', padding: 24, background: '#fff', borderRadius: 8, boxShadow: '0 2px 8px #eee' }}>
       <h1 style={{ marginBottom: 8 }}>{livro.titulo}</h1>
-      <p style={{ color: '#555', fontSize: 16, marginBottom: 24 }}>Autor: <b>{livro.autor_nome}</b></p>
+      <p style={{ color: '#555', fontSize: 16, marginBottom: 24 }}>Autor: <b>{livro.autor_email}</b></p>
       <div style={{ fontSize: 18, lineHeight: 1.7 }}>{livro.conteudo}</div>
     </div>
   );

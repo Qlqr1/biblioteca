@@ -36,6 +36,7 @@ router.post(
         );
         res.status(201).json({ message: 'Usuário registrado com sucesso.' });
     } catch (error) {
+        console.error(error);
         // Trata o erro de email duplicado (ER_DUP_ENTRY do MySQL)
         if (error.code === 'ER_DUP_ENTRY') {
             return res.status(400).json({ message: 'Email já cadastrado.' });
@@ -92,9 +93,9 @@ router.get('/livros/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const [rows] = await db.execute(
-            `SELECT l.titulo, l.conteudo, u.nome AS autor_nome
+            `SELECT l.titulo, l.conteudo, u.email AS autor_email
              FROM livros l
-             JOIN users u ON l.autor_id = u.id
+             LEFT JOIN users u ON l.autor_id = u.id
              WHERE l.id = ?`,
             [id]
         );
@@ -104,6 +105,23 @@ router.get('/livros/:id', async (req, res) => {
         res.status(200).json(rows[0]);
     } catch (error) {
         res.status(500).json({ message: 'Erro ao buscar livro.' });
+    }
+});
+
+// ----------------------------------------------------------------------
+// ROTA DE LISTAR TODOS OS LIVROS (GET /livros)
+// ----------------------------------------------------------------------
+router.get('/livros', async (req, res) => {
+    try {
+        const [rows] = await db.execute(
+            `SELECT l.id, l.titulo, u.email AS autor_email
+             FROM livros l
+             LEFT JOIN users u ON l.autor_id = u.id`
+        );
+        res.status(200).json(rows);
+    } catch (error) {
+        console.log('Erro ao buscar livros:', error);
+        res.status(500).json({ message: 'Erro ao buscar livros.' });
     }
 });
 
@@ -119,18 +137,22 @@ router.post(
         body('conteudo').notEmpty().withMessage('O conteúdo é obrigatório.')
     ],
     async (req, res) => {
+        console.log("Iniciando validação de dados do livro.");
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
         const { titulo, conteudo } = req.body;
         try {
+            console.log("Registrando livro para o autor ID:", req.user.id);
             await db.execute(
                 'INSERT INTO livros (titulo, conteudo, autor_id) VALUES (?, ?, ?)',
                 [titulo, conteudo, req.user.id]
             );
+            console.log("Livro registrado com sucesso.");
             res.status(201).json({ message: 'Livro registrado com sucesso.' });
         } catch (error) {
+            console.log("Erro ao registrar livro:", error);
             res.status(500).json({ message: 'Erro no servidor.' });
         }
     }

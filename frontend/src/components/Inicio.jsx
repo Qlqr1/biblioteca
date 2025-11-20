@@ -11,7 +11,7 @@ function Inicio() {
   useEffect(() => {
     async function fetchLivros() {
       try {
-        const response = await api.get('/livros');
+        const response = await api.get('/auth/livros');
         setLivros(response.data);
       } catch (err) {
         setError('Erro ao carregar livros.');
@@ -29,7 +29,7 @@ function Inicio() {
     <>
       <div>
         <h1>Bem-vindo à Biblioteca Online</h1>
-        <p>Explore nossa coleção de livros e gerencie seu perfil.</p>
+        <p>Explore nossa coleção de livros.</p>
       </div>
       <div>
         <h2>Livros Disponíveis</h2>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../api/api';
+import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const [titulo, setTitulo] = useState('');
-  const [texto, setTexto] = useState('');
+  const [conteudo, setConteudo] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ function Dashboard() {
     e.preventDefault();
     try {
       // 1. Envia os dados para a rota de registro do backend
-      await api.post('/auth/texto', { titulo, texto });
+      await api.post('/auth/texto', { titulo, conteudo });
       // 2. Notifica o usuário e redireciona para o login
       alert('Livro postado com sucesso!');
         
@@ -28,7 +28,7 @@ function Dashboard() {
     const fetchProtectedData = async () => {
       try {
         // A requisição usa o interceptor do Axios para enviar o token automaticamente
-        const response = await axios.get('http://localhost:5000/api/protected');
+        const response = await api.get('http://localhost:5000/api/protected');
         setMessage(response.data.message);
       } catch (error) {
         // Se houver um erro, o token pode estar inválido. Redireciona para o login.
@@ -66,9 +66,9 @@ function Dashboard() {
             <br /><br />
             <input 
               type="text"
-              value={texto}
-              onChange={(e) => setTexto(e.target.value)}
-              placeholder="Texto do livro" 
+              value={conteudo}
+              onChange={(e) => setConteudo(e.target.value)}
+              placeholder="Conteúdo do livro" 
               required 
             />
             <br /><br />

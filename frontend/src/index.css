@@ -1,10 +1,8 @@
-/* --- IMPORTAÇÃO DA FONTE MINECRAFT --- */
 @font-face {
   font-family: "Minecraftia";
   src: url("/fonts/Minecraftia-Regular.ttf") format("truetype");
 }
 
-/* --- APLICA A FONTE EM TODA A INTERFACE --- */
 body {
   font-family: "Minecraftia", system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
@@ -13,10 +11,9 @@ input {
   font-family: "Minecraftia", sans-serif !important;
   font-size: 10px;
   
-  height: 32px;           /* altura final do input */
-  padding: 8px 10px;      /* padding vertical para centralizar */
-  
-  box-sizing: border-box; /* garante que padding não estoura altura */
+  height: 32px;
+  padding: 8px 10px;
+  box-sizing: border-box;
 }
 
 /* Placeholder */

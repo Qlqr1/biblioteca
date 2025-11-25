@@ -3,10 +3,6 @@
   src: url("/fonts/Minecraftia-Regular.ttf") format("truetype");
 }
 
-body {
-  font-family: "Minecraftia", system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
-
 input {
   font-family: "Minecraftia", sans-serif !important;
   font-size: 10px;
@@ -15,8 +11,6 @@ input {
   padding: 8px 10px;
   box-sizing: border-box;
 }
-
-/* Placeholder */
 input::placeholder,
 textarea::placeholder {
   font-family: "Minecraftia", sans-serif !important;
@@ -39,21 +33,14 @@ textarea::placeholder {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
+  font-family: "Minecraftia", system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url(/public/img/portal.gif);
+  background-size: 5%;
 }
 
 h1 {
@@ -91,4 +78,22 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+nav {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+
+  display: flex;
+  gap: 10px;
+  font-family: "Minecraftia", sans-serif;
+}
+nav a {
+  color: #808080;
+  text-decoration: none;
+  font-size: 14px;
+}
+nav a:hover {
+  color: #ffffff;
 }

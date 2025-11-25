@@ -19,10 +19,10 @@ import Livro from './components/Livro.jsx';
 function App() {
   return (
     <Router>
-      <nav style={{ marginBottom: '20px' }}>
+      <nav>
         <Link to="/">Home</Link> |
         <Link to="/login">Login</Link> |
-        <Link to="/register">Registro</Link> | {/* <--- NOVIDADE 2: Link para a rota */}
+        <Link to="/register">Registro</Link> |
         <Link to="/dashboard">Perfil</Link>
       </nav>
       <Routes>

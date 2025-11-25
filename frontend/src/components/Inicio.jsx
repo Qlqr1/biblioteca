@@ -23,7 +23,15 @@ function Inicio() {
   }, []);
 
   if (loading) return <div>Carregando...</div>;
-  if (error) return <div style={{color: 'red'}}>{error}</div>;
+
+  // 🔥 AQUI ESTÁ A CORREÇÃO, sem alterar nada mais
+  if (error) {
+    return (
+      <div className="erro-container">
+        <p className="erro-msg">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -35,17 +43,23 @@ function Inicio() {
       <div>
         <h2>Livros Disponíveis</h2>
 
-        <div>
-          {livros.length === 0 && <p>Nenhum livro cadastrado.</p>}
+        <div className={`livros-container ${livros.length === 0 ? "vazio" : ""}`}>
+          {livros.length === 0 && (
+            <p className="nenhum-livro">Nenhum livro cadastrado.</p>
+          )}
 
           {livros.map(livro => (
-            <div key={livro.id} onClick={() => navigate(`/livro/${livro.id}`)}>
-              <h3 >{livro.titulo}</h3>
+            <div
+              key={livro.id}
+              className="livro-card"
+              onClick={() => navigate(`/livro/${livro.id}`)}
+            >
+              <h3>{livro.titulo}</h3>
               <p>Autor: <b>{livro.autor_nome}</b></p>
             </div>
-
           ))}
         </div>
+
       </div>
     </>
   );

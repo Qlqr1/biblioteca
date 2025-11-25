@@ -6,7 +6,7 @@ import Inicio from './components/Inicio.jsx';
 import Livro from './components/Livro.jsx';
 
 // Componente que atua como um 'guarda de rota'
-  const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
   // Se não houver token, redireciona o usuário para a página de login
   if (!token) {
@@ -19,12 +19,14 @@ import Livro from './components/Livro.jsx';
 function App() {
   return (
     <Router>
-      <nav>
-        <Link to="/">Home</Link> |
-        <Link to="/login">Login</Link> |
-        <Link to="/register">Registro</Link> |
-        <Link to="/dashboard">Perfil</Link>
-      </nav>
+      <header>
+        <nav>
+          <Link to="/">Home</Link> |
+          <Link to="/login">Login</Link> |
+          <Link to="/register">Registro</Link> |
+          <Link to="/dashboard">Perfil</Link>
+        </nav>
+      </header>
       <Routes>
         {/* Rotas Públicas */}
         <Route path="/" element={<Inicio />} />

@@ -6,11 +6,12 @@
 input {
   font-family: "Minecraftia", sans-serif !important;
   font-size: 10px;
-  
+
   height: 32px;
   padding: 8px 10px;
   box-sizing: border-box;
 }
+
 input::placeholder,
 textarea::placeholder {
   font-family: "Minecraftia", sans-serif !important;
@@ -36,7 +37,6 @@ textarea::placeholder {
 body {
   font-family: "Minecraftia", system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
-  display: flex;
   min-width: 320px;
   min-height: 100vh;
   background-image: url(/public/img/portal.gif);
@@ -59,9 +59,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -72,9 +74,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
@@ -89,11 +93,56 @@ nav {
   gap: 10px;
   font-family: "Minecraftia", sans-serif;
 }
+
 nav a {
   color: #808080;
   text-decoration: none;
   font-size: 14px;
 }
+
 nav a:hover {
   color: #ffffff;
+}
+
+.livros-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.livros-container.vazio {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nenhum-livro {
+  font-family: "Minecraftia";
+  font-size: 18px;
+  color: #b3aaff;
+  text-shadow: 2px 2px 0px #000;
+  text-align: center;
+}
+
+.erro-container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.erro-msg {
+  font-family: "Minecraftia";
+  font-size: 22px;
+  color: #ff4d4d;
+  text-shadow: 2px 2px 0px #000;
+  background: rgba(20, 20, 20, 0.85);
+  padding: 15px 25px;
+  border: 20px solid transparent;
+  border-image-source: url("/img/Redstone_blok_tile.jpg");
+  border-image-slice: 30;
+  border-image-width: 20px;
+  border-image-repeat: round;
 }

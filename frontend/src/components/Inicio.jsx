@@ -23,36 +23,43 @@ function Inicio() {
   }, []);
 
   if (loading) return <div>Carregando...</div>;
-  if (error) return <div style={{color: 'red'}}>{error}</div>;
+
+  if (error) {
+    return (
+      <div className="erro-container">
+        <p className="erro-msg">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <>
-      <div>
-        <h1>Bem-vindo à Biblioteca Online</h1>
-        <p>Explore nossa coleção de livros.</p>
+      {/* TÍTULO CENTRALIZADO NO TOPO — ESTILO END CRYSTAL PURPUR */}
+      <div className="header-container">
+        <h1 className="titulo-ender">EnderBooks</h1>
+        <p className="subtitulo">Explore nossa coleção de livros.</p>
       </div>
+
       <div>
-        <h2>Livros Disponíveis</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', justifyContent: 'center' }}>
-          {livros.length === 0 && <p>Nenhum livro cadastrado.</p>}
-          {livros.map(livro => (
+        <h2 className="titulo-secao">Livros Disponíveis</h2>
+
+        <div
+          className={`livros-container ${livros.length === 0 ? "vazio" : ""}`}
+        >
+          {livros.length === 0 && (
+            <p className="nenhum-livro">Nenhum livro cadastrado.</p>
+          )}
+
+          {livros.map((livro) => (
             <div
               key={livro.id}
-              style={{
-                background: '#fff',
-                borderRadius: 8,
-                boxShadow: '0 2px 8px #eee',
-                padding: 20,
-                minWidth: 220,
-                cursor: 'pointer',
-                transition: 'box-shadow 0.2s',
-                border: '1px solid #eee',
-                textAlign: 'left'
-              }}
+              className="livro-card"
               onClick={() => navigate(`/livro/${livro.id}`)}
             >
-              <h3 style={{ margin: '0 0 8px 0', fontSize: 20 }}>{livro.titulo}</h3>
-              <p style={{ color: '#555', fontSize: 15, margin: 0 }}>Autor: <b>{livro.autor_email}</b></p>
+              <h3>{livro.titulo}</h3>
+              <p>
+                Autor: <b>{livro.autor_email}</b>
+              </p>
             </div>
           ))}
         </div>

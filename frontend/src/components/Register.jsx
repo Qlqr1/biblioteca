@@ -26,8 +26,8 @@ function Register() {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <h2>Registro de Usuário</h2>
+        <div className="painel-inventario" style={{ maxWidth: '400px', marginTop: '100px' }}>
+            <h2 style={{ color: '#fff', textShadow: '2px 2px #000', textAlign: 'center' }}>Registro de Usuário</h2>
             <form onSubmit={handleSubmit}>
                 <input 
                     type="email" 
@@ -35,6 +35,7 @@ function Register() {
                     onChange={(e) => setEmail(e.target.value)} 
                     placeholder="Email" 
                     required 
+                    className="input-obsidian"
                 />
                 <br /><br />
                 <input 
@@ -43,9 +44,10 @@ function Register() {
                     onChange={(e) => setPassword(e.target.value)} 
                     placeholder="Senha" 
                     required 
+                    className="input-obsidian"
                 />
                 <br /><br />
-                <button type="submit">Registrar</button>
+                <button type="submit" className="botao-bedrock" style={{ width: '100%' }}>Registrar</button>
             </form>
         </div>
     );

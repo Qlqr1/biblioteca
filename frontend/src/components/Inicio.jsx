@@ -52,7 +52,7 @@ function Inicio() {
               onClick={() => navigate(`/livro/${livro.id}`)}
             >
               <h3 style={{ margin: '0 0 8px 0', fontSize: 20 }}>{livro.titulo}</h3>
-              <p style={{ color: '#555', fontSize: 15, margin: 0 }}>Autor: <b>{livro.autor_nome}</b></p>
+              <p style={{ color: '#555', fontSize: 15, margin: 0 }}>Autor: <b>{livro.autor_email}</b></p>
             </div>
           ))}
         </div>

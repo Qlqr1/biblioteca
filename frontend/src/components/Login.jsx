@@ -28,8 +28,8 @@ function Login() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Login</h2>
+    <div className="painel-inventario" style={{ maxWidth: '400px', marginTop: '100px' }}>
+      <h2 style={{ color: '#fff', textShadow: '2px 2px #000', textAlign: 'center' }}>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -37,6 +37,7 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
+          className="input-obsidian"
         />
         <br /><br />
         <input
@@ -45,9 +46,10 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Senha"
           required
+          className="input-obsidian"
         />
         <br /><br />
-        <button type="submit">Entrar</button>
+        <button type="submit" className="botao-bedrock" style={{ width: '100%' }}>Entrar</button>
       </form>
     </div>
   );

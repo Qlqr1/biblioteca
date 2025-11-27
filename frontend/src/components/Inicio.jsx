@@ -24,7 +24,6 @@ function Inicio() {
 
   if (loading) return <div>Carregando...</div>;
 
-  // 🔥 AQUI ESTÁ A CORREÇÃO, sem alterar nada mais
   if (error) {
     return (
       <div className="erro-container">
@@ -35,31 +34,35 @@ function Inicio() {
 
   return (
     <>
-      <div>
-        <h1>Bem-vindo à Biblioteca Online</h1>
-        <p>Explore nossa coleção de livros.</p>
+      {/* TÍTULO CENTRALIZADO NO TOPO — ESTILO END CRYSTAL PURPUR */}
+      <div className="header-container">
+        <h1 className="titulo-ender">EnderBooks</h1>
+        <p className="subtitulo">Explore nossa coleção de livros.</p>
       </div>
 
       <div>
-        <h2>Livros Disponíveis</h2>
+        <h2 className="titulo-secao">Livros Disponíveis</h2>
 
-        <div className={`livros-container ${livros.length === 0 ? "vazio" : ""}`}>
+        <div
+          className={`livros-container ${livros.length === 0 ? "vazio" : ""}`}
+        >
           {livros.length === 0 && (
             <p className="nenhum-livro">Nenhum livro cadastrado.</p>
           )}
 
-          {livros.map(livro => (
+          {livros.map((livro) => (
             <div
               key={livro.id}
               className="livro-card"
               onClick={() => navigate(`/livro/${livro.id}`)}
             >
               <h3>{livro.titulo}</h3>
-              <p>Autor: <b>{livro.autor_nome}</b></p>
+              <p>
+                Autor: <b>{livro.autor_email}</b>
+              </p>
             </div>
           ))}
         </div>
-
       </div>
     </>
   );

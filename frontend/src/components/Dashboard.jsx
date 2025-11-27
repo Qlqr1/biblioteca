@@ -11,35 +11,28 @@ function Dashboard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // 1. Envia os dados para a rota de registro do backend
       await api.post('/auth/texto', { titulo, conteudo });
-      // 2. Notifica o usuário e redireciona para o login
       alert('Livro postado com sucesso!');
-        
     } catch (error) {
-      // 3. Trata erros, como 'Email já cadastrado'
       const message = error.response?.data?.message || 'Erro ao postar. Tente novamente.';
       alert(message);
     }
   };
 
   useEffect(() => {
-    // Esta função tenta acessar a rota protegida do backend
     const fetchProtectedData = async () => {
       try {
-        // A requisição usa o interceptor do Axios para enviar o token automaticamente
         const response = await api.get('http://localhost:5000/api/protected');
         setMessage(response.data.message);
       } catch (error) {
-        // Se houver um erro, o token pode estar inválido. Redireciona para o login.
         console.error('Erro ao acessar rota protegida:', error);
-        localStorage.removeItem('token'); // Remove o token inválido
+        localStorage.removeItem('token');
         navigate('/login');
       }
     };
 
     fetchProtectedData();
-  }, [navigate]); // O array vazio garante que o efeito só rode uma vez
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -48,32 +41,40 @@ function Dashboard() {
 
   return (
     <>
-      <div style={{ padding: '20px' }}>
-          <h2>Perfil</h2>
-          <p>{message}</p>
-          <button onClick={handleLogout}>Sair</button>
+      <div className="painel-inventario">
+        <h2 className="titulo-secao">Perfil</h2>
+        <p>{message}</p>
+        <button className="botao-bedrock" onClick={handleLogout}>Sair</button>
       </div>
-      <div>
-          <h3>Postar livro</h3>
-          <form onSubmit={handleSubmit}>
-            <input 
-              type="text"
-              value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
-              placeholder="Título do Livro" 
-              required 
-            />
-            <br /><br />
-            <input 
-              type="text"
-              value={conteudo}
-              onChange={(e) => setConteudo(e.target.value)}
-              placeholder="Conteúdo do livro" 
-              required 
-            />
-            <br /><br />
-            <button type="submit">Adicionar Livro</button>
-          </form>
+
+      <div className="painel-inventario">
+        <h3 className="titulo-secao">Postar Livro</h3>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="input-obsidian"
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            placeholder="Título do Livro"
+            required
+          />
+
+          <br /><br />
+
+          <textarea
+            className="input-obsidian"
+            value={conteudo}
+            onChange={(e) => setConteudo(e.target.value)}
+            placeholder="Conteúdo do livro"
+            rows={5}
+            required
+          />
+
+          <br /><br />
+
+          <button className="botao-bedrock" type="submit">Adicionar Livro</button>
+        </form>
       </div>
     </>
   );

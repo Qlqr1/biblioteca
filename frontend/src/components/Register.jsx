@@ -12,11 +12,11 @@ function Register() {
         try {
             // 1. Envia os dados para a rota de registro do backend
             await api.post('/auth/register', { email, password });
-            
+
             // 2. Notifica o usuário e redireciona para o login
             alert('Usuário registrado com sucesso! Faça o login.');
             navigate('/login');
-            
+
         } catch (error) {
             console.error('Erro ao registrar usuário:', error);
             // 3. Trata erros, como 'Email já cadastrado'
@@ -29,21 +29,21 @@ function Register() {
         <div className="painel-inventario" style={{ maxWidth: '400px', marginTop: '100px' }}>
             <h2 style={{ color: '#fff', textShadow: '2px 2px #000', textAlign: 'center' }}>Registro de Usuário</h2>
             <form onSubmit={handleSubmit}>
-                <input 
-                    type="email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    placeholder="Email" 
-                    required 
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    required
                     className="input-obsidian"
                 />
                 <br /><br />
-                <input 
-                    type="password" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)} 
-                    placeholder="Senha" 
-                    required 
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Senha"
+                    required
                     className="input-obsidian"
                 />
                 <br /><br />

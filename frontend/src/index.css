@@ -47,6 +47,9 @@ body {
   background-size: 10%;
   background-repeat: repeat;
   background-position: top left;
+
+  /* empurra o conteúdo para baixo da nav */
+  padding-top: 70px !important;
 }
 
 /* garante que regras genéricas de button não escondam a textura */
@@ -106,20 +109,25 @@ button.botao-bedrock:hover,
 }
 
 /* ---------------------- */
-/* NAV CORRIGIDA – NÃO QUEBRA O TÍTULO */
+/* NAV – FIXA E CORRIGIDA */
 /* ---------------------- */
+
 header {
   display: none !important;
 }
 
 .nav-mc {
-  position: absolute;
-  top: 10px;
+  position: fixed;
+  /* sempre no topo */
+  top: 0;
   right: 20px;
+
   display: flex;
   gap: 10px;
   font-family: "Minecraftia", sans-serif;
-  z-index: 999;
+  z-index: 9999;
+
+  padding: 10px 0;
 }
 
 .nav-btn {
